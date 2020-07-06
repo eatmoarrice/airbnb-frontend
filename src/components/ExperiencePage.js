@@ -33,13 +33,13 @@ export default function ExperiencePage(props) {
 				<div className="container">
 					<div className="d-flex photoGrid">
 						<div className="bigPhoto" style={{ backgroundImage: `url(${experience.images[0]})`, backgroundSize: "cover" }}></div>
-						<div className="bigPhoto" style={{ backgroundImage: `url(${experience.images[0]})`, backgroundSize: "cover" }}></div>
+						<div className="bigPhoto" style={{ backgroundImage: `url(${experience.images[1]})`, backgroundSize: "cover" }}></div>
 
 						<div className="d-flex smallPhoto flex-column smallPhotos">
-							<div className="smallPhoto" style={{ backgroundImage: `url(${experience.images[0]})`, backgroundSize: "cover" }}></div>
-							<div className="smallPhoto" style={{ backgroundImage: `url(${experience.images[0]})`, backgroundSize: "cover" }}></div>
+							<div className="smallPhoto" style={{ backgroundImage: `url(${experience.images[2]})`, backgroundSize: "cover" }}></div>
+							<div className="smallPhoto" style={{ backgroundImage: `url(${experience.images[3]})`, backgroundSize: "cover" }}></div>
 						</div>
-						<div className="bigPhoto" style={{ backgroundImage: `url(${experience.images[0]})`, backgroundSize: "cover" }}></div>
+						<div className="bigPhoto" style={{ backgroundImage: `url(${experience.images[4]})`, backgroundSize: "cover" }}></div>
 					</div>
 
 					<div className="row">

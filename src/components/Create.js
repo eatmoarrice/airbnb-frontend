@@ -67,9 +67,10 @@ export default function Create() {
 						<input type="text" name="price" value={price} onChange={(e) => setPrice(e.target.value)} />
 						<br />
 
-						<label for="pictureUrl">Picture URL</label>
+						<label for="pictureUrl">Picture URL #1</label>
 						<input type="text" name="pictureUrl" value={images} onChange={(e) => setImages(e.target.value)} />
 						<br />
+
 						<input type="submit" value="Create Experience" />
 					</form>
 				</div>

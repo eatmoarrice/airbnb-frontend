@@ -17,7 +17,7 @@ export default function ExperienceList() {
 	}
 	return (
 		<div>
-			<h1>Experiences: </h1>
+			<h1 className="text-center experiences">Experiences: </h1>
 			<hr></hr>
 			<div className="d-flex flex-wrap justify-content-around">
 				{experiences.map((e) => (
@@ -32,18 +32,16 @@ function roundToTwo(num) {
 	return +(Math.round(num + "e+2") + "e-2");
 }
 
-const Experience = ({ title, images, description, country, duration, rate, _id }) => (
+const Experience = ({ title, images, description, country, duration, price, _id }) => (
 	<Link to={`/experiences/${_id}`}>
 		<div className="tourCard">
-			<h4>{title}</h4>
-			<h5>{country}</h5>
 			<div className="d-flex justify-content-center">
-				<div className="image-limit">
-					<img width="400px" src={images} />
-				</div>
+				<div className="image-limit" style={{ backgroundImage: `url(${images[0]})` }}></div>
 			</div>
-			{/* <h4>Starting from: ${rate}</h4> */}
-			<h4>{roundToTwo(duration / 60)} hour</h4>
+			<p className="font-weight-bold mb-1">{country.toUpperCase()}</p>
+			<p className="mb-0">{title}</p>
+			<p className="mb-0">Starting from: ${price}</p>
+			<p className="mb-0">{roundToTwo(duration / 60)} hour</p>
 		</div>
 	</Link>
 );
