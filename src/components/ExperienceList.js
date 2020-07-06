@@ -1,22 +1,38 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-export default function ExperienceList() {
+export default function ExperienceList(props) {
+	const [pageNum, setPageNum] = useState(1);
 	const [experiences, setExperiences] = useState([]);
+	const goNextPage = () => {
+		setPageNum(pageNum + 1);
+	};
+	const goPreviousPage = () => {
+		setPageNum(pageNum - 1);
+	};
 	useEffect(() => {
 		async function fetchData() {
-			const data = await fetch("https://airbnb-server-backend.herokuapp.com/experiences");
+			const data = await fetch(`https://airbnb-server-backend.herokuapp.com/experiences?page=${pageNum}`);
 			const resData = await data.json();
 			console.log(resData);
 			setExperiences(resData.data);
 		}
 		fetchData();
-	}, []);
+	}, [pageNum]);
 	if (!experiences) {
 		return <div>loading</div>;
 	}
 	return (
 		<div>
+			<div className="d-flex justify-content-between">
+				<a href="#" onClick={() => goPreviousPage()}>
+					Previous Page
+				</a>
+				<a href="#" onClick={() => goNextPage()}>
+					Next Page
+				</a>
+			</div>
+
 			<h1 className="text-center experiences">Experiences: </h1>
 			<hr></hr>
 			<div className="d-flex flex-wrap justify-content-around">
