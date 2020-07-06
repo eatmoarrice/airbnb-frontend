@@ -37,7 +37,7 @@ export default function Edit(props) {
 			}
 		}
 		console.log(trimmedExperience);
-		const newExperience = await fetch(`http://localhost:5000/experiences/${id}/`, {
+		const newExperience = await fetch(`https://airbnb-server-backend.herokuapp.com/experiences/${id}/`, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json"
@@ -49,7 +49,7 @@ export default function Edit(props) {
 
 	useEffect(() => {
 		async function fetchData() {
-			const data = await fetch(`http://localhost:5000/experiences/${id}`);
+			const data = await fetch(`https://airbnb-server-backend.herokuapp.com/experiences/${id}`);
 			const resData = await data.json();
 			setDescription(resData.data.description.replace(/\n/g, "<br />"));
 			setExperience(resData.data);

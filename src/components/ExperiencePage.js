@@ -12,7 +12,7 @@ export default function ExperiencePage(props) {
 
 	useEffect(() => {
 		async function fetchData() {
-			const data = await fetch(`http://localhost:5000/experiences/${id}`);
+			const data = await fetch(`https://airbnb-server-backend.herokuapp.com/experiences/${id}`);
 			const resData = await data.json();
 			console.log(resData);
 			description = resData.data.description.replace(/\n/g, "<br />");

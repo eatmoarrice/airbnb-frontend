@@ -25,7 +25,7 @@ export default function Create() {
 		if (description) experienceData.description = description;
 
 		console.log(experienceData);
-		const newExperience = await fetch("http://localhost:5000/experiences", {
+		const newExperience = await fetch("https://airbnb-server-backend.herokuapp.com/experiences", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"

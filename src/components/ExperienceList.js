@@ -5,7 +5,7 @@ export default function ExperienceList() {
 	const [experiences, setExperiences] = useState([]);
 	useEffect(() => {
 		async function fetchData() {
-			const data = await fetch("http://localhost:5000/experiences");
+			const data = await fetch("https://airbnb-server-backend.herokuapp.com/experiences");
 			const resData = await data.json();
 			console.log(resData);
 			setExperiences(resData.data);
