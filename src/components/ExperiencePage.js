@@ -142,7 +142,7 @@ export default function ExperiencePage(props) {
 						</div>
 						<div className="col-md-8">
 							<div className="description">
-								{experience.exp.items
+								{experience.exp.items.length > 0
 									? experience.exp.items.map((item) => <span className="badge badge-warning">{item}</span>)
 									: "Just yourself! This experience only requires a willingness to participate."}
 							</div>
