@@ -1,39 +1,57 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Rheostat from "rheostat";
 
 export default function ExperienceList(props) {
 	const [pageNum, setPageNum] = useState(1);
 	const [experiences, setExperiences] = useState([]);
+	const [maxPageNum, setMaxPageNum] = useState(1);
+	const [minPrice, setMinPrice] = useState(1);
+	const [maxPrice, setMaxPrice] = useState(1000);
 	const goNextPage = () => {
 		setPageNum(pageNum + 1);
 	};
 	const goPreviousPage = () => {
 		setPageNum(pageNum - 1);
 	};
+
+	const handleChange = (e) => {
+		setMinPrice(e.values[0]);
+		setMaxPrice(e.values[1]);
+	};
 	useEffect(() => {
 		async function fetchData() {
-			const data = await fetch(`https://airbnb-server-backend.herokuapp.com/experiences?page=${pageNum}`);
+			const data = await fetch(`https://airbnb-server-backend.herokuapp.com/experiences?page=${pageNum}&minPrice=${minPrice}&maxPrice=${maxPrice}`);
 			const resData = await data.json();
 			console.log(resData);
 			setExperiences(resData.data);
+			setMaxPageNum(resData.maxPageNum);
 		}
 		fetchData();
-	}, [pageNum]);
+	}, [pageNum, minPrice, maxPrice]);
 	if (!experiences) {
 		return <div>loading</div>;
 	}
 	return (
 		<div>
 			<div className="d-flex justify-content-between">
-				<a href="#" onClick={() => goPreviousPage()}>
+				<button className="btn  btn-secondary btn-sm m-4" disabled={pageNum === 1} onClick={() => goPreviousPage()}>
 					Previous Page
-				</a>
-				<a href="#" onClick={() => goNextPage()}>
+				</button>
+				<button className="btn  btn-secondary btn-sm m-4" disabled={pageNum === maxPageNum} onClick={() => goNextPage()}>
 					Next Page
-				</a>
+				</button>
 			</div>
 
 			<h1 className="text-center experiences">Experiences: </h1>
+			<div className="container">
+				<Rheostat min={1} max={1000} values={[minPrice, maxPrice]} onChange={handleChange} />
+
+				<div className="d-flex justify-content-between">
+					<p>Min Price ${minPrice}</p>
+					<p>Max Price ${maxPrice}</p>
+				</div>
+			</div>
 			<hr></hr>
 			<div className="d-flex flex-wrap justify-content-around">
 				{experiences.map((e) => (

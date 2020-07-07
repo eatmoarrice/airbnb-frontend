@@ -7,6 +7,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Create from "./components/Create";
 import ExperiencePage from "./components/ExperiencePage";
 import Edit from "./components/Edit";
+import "rheostat/initialize";
+import "rheostat/css/rheostat.css";
 
 function App() {
 	return (
