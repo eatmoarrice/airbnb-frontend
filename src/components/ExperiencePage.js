@@ -15,8 +15,8 @@ export default function ExperiencePage(props) {
 			const data = await fetch(`https://airbnb-server-backend.herokuapp.com/experiences/${id}`);
 			const resData = await data.json();
 			console.log(resData);
-			description = resData.data.description.replace(/\n/g, "<br />");
-			console.log(description);
+			// description = resData.data.description.replace(/\n/g, "<br />");
+			// console.log(description);
 			setExperience(resData.data);
 		}
 		fetchData();
@@ -108,6 +108,22 @@ export default function ExperiencePage(props) {
 									<p className="bold-text">Simple and global</p>
 									<p>Join easily and participate from home without a lot of prep.</p>
 								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div className="p-2 text-left">
+				<div className="container p-5">
+					<div className="row">
+						<div className="col-md-4">
+							<h2>What to bring</h2>
+						</div>
+						<div className="col-md-8">
+							<div className="description">
+								{description.items
+									? description.items.map((item) => <span className="badge badge-warning">{item}</span>)
+									: "Just yourself! This experience only requires a willingness to participate."}
 							</div>
 						</div>
 					</div>
