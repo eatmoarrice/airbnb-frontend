@@ -7,7 +7,7 @@ export default function ExperienceList(props) {
 	const [experiences, setExperiences] = useState([]);
 	const [maxPageNum, setMaxPageNum] = useState(1);
 	const [minPrice, setMinPrice] = useState(1);
-	const [maxPrice, setMaxPrice] = useState(1000);
+	const [maxPrice, setMaxPrice] = useState(200);
 	const goNextPage = () => {
 		setPageNum(pageNum + 1);
 	};
@@ -19,6 +19,15 @@ export default function ExperienceList(props) {
 		setMinPrice(e.values[0]);
 		setMaxPrice(e.values[1]);
 	};
+
+	const handleChangeMin = (e) => {
+		setMinPrice(e.target.value);
+	};
+
+	const handleChangeMax = (e) => {
+		setMaxPrice(e.target.value);
+	};
+
 	useEffect(() => {
 		async function fetchData() {
 			const data = await fetch(`https://airbnb-server-backend.herokuapp.com/experiences?page=${pageNum}&minPrice=${minPrice}&maxPrice=${maxPrice}`);
@@ -45,11 +54,15 @@ export default function ExperienceList(props) {
 
 			<h1 className="text-center experiences">Experiences: </h1>
 			<div className="container">
-				<Rheostat min={1} max={1000} values={[minPrice, maxPrice]} onChange={handleChange} />
+				<Rheostat min={1} max={200} values={[minPrice, maxPrice]} onChange={handleChange} />
 
-				<div className="d-flex justify-content-between">
-					<p>Min Price ${minPrice}</p>
-					<p>Max Price ${maxPrice}</p>
+				<div className="d-flex justify-content-center align-items-center flex-column mt-2">
+					<p>
+						Min Price <input type="number" value={minPrice} onChange={handleChangeMin} />
+					</p>
+					<p>
+						Max Price <input type="number" value={maxPrice} onChange={handleChangeMax} />
+					</p>
 				</div>
 			</div>
 			<hr></hr>

@@ -31,7 +31,7 @@ export default function Edit(props) {
 		let trimmedExperience = {};
 
 		for (const [key, value] of Object.entries(experience)) {
-			if (value != updatedExperience[key]) {
+			if (value !== updatedExperience[key]) {
 				console.log(value, updatedExperience[key]);
 				trimmedExperience[key] = updatedExperience[key];
 			}
