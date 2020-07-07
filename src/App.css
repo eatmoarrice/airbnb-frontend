@@ -122,3 +122,13 @@ textarea {
 .experiences {
 	font-family: "Comfortaa", cursive;
 }
+
+.avatar {
+	border-radius: 50%;
+}
+
+.intro {
+	text-align: left;
+	letter-spacing: 2px;
+	word-spacing: 5px;
+}

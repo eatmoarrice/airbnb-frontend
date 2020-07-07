@@ -51,15 +51,15 @@ export default function Edit(props) {
 		async function fetchData() {
 			const data = await fetch(`https://airbnb-server-backend.herokuapp.com/experiences/${id}`);
 			const resData = await data.json();
-			setDescription(resData.data.description.replace(/\n/g, "<br />"));
-			setExperience(resData.data);
-			setDuration(resData.data.duration);
-			setImages(resData.data.images);
-			setPrice(resData.data.price);
-			setTitle(resData.data.title);
-			setLanguage(resData.data.language);
-			setCountry(resData.data.country);
-			setSize(resData.data.groupSize);
+			setDescription(resData.data.exp.description.replace(/\n/g, "<br />"));
+			setExperience(resData.data.exp);
+			setDuration(resData.data.exp.duration);
+			setImages(resData.data.exp.images);
+			setPrice(resData.data.exp.price);
+			setTitle(resData.data.exp.title);
+			setLanguage(resData.data.exp.language);
+			setCountry(resData.data.exp.country);
+			setSize(resData.data.exp.groupSize);
 		}
 		fetchData();
 	}, []);

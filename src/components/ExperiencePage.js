@@ -15,8 +15,10 @@ export default function ExperiencePage(props) {
 			const data = await fetch(`https://airbnb-server-backend.herokuapp.com/experiences/${id}`);
 			const resData = await data.json();
 			console.log(resData);
-			// description = resData.data.description.replace(/\n/g, "<br />");
-			// console.log(description);
+			// description = resData.data.exp.description.replace(/\n/g, "<br />");
+
+			description = resData.data.exp.description.replace(/\n/g, "<br />");
+			console.log(description);
 			setExperience(resData.data);
 		}
 		fetchData();
@@ -32,20 +34,20 @@ export default function ExperiencePage(props) {
 				</Link>
 				<div className="container">
 					<div className="d-flex photoGrid">
-						<div className="bigPhoto" style={{ backgroundImage: `url(${experience.images[0]})`, backgroundSize: "cover" }}></div>
-						<div className="bigPhoto" style={{ backgroundImage: `url(${experience.images[1]})`, backgroundSize: "cover" }}></div>
+						<div className="bigPhoto" style={{ backgroundImage: `url(${experience.exp.images[0]})`, backgroundSize: "cover" }}></div>
+						<div className="bigPhoto" style={{ backgroundImage: `url(${experience.exp.images[1]})`, backgroundSize: "cover" }}></div>
 
 						<div className="d-flex smallPhoto flex-column smallPhotos">
-							<div className="smallPhoto" style={{ backgroundImage: `url(${experience.images[2]})`, backgroundSize: "cover" }}></div>
-							<div className="smallPhoto" style={{ backgroundImage: `url(${experience.images[3]})`, backgroundSize: "cover" }}></div>
+							<div className="smallPhoto" style={{ backgroundImage: `url(${experience.exp.images[2]})`, backgroundSize: "cover" }}></div>
+							<div className="smallPhoto" style={{ backgroundImage: `url(${experience.exp.images[3]})`, backgroundSize: "cover" }}></div>
 						</div>
-						<div className="bigPhoto" style={{ backgroundImage: `url(${experience.images[4]})`, backgroundSize: "cover" }}></div>
+						<div className="bigPhoto" style={{ backgroundImage: `url(${experience.exp.images[4]})`, backgroundSize: "cover" }}></div>
 					</div>
 
 					<div className="row">
 						<div className="col-md-4 d-flex flex-column justify-content-center text-left">
-							<h3 className="mini-title">{experience.title}</h3>
-							<div className="mini-country">{experience.country}</div>
+							<h3 className="mini-title">{experience.exp.title}</h3>
+							<div className="mini-country">{experience.exp.country}</div>
 						</div>
 						<div className="col-md-8">
 							<hr />
@@ -56,17 +58,17 @@ export default function ExperiencePage(props) {
 								<div className="dflex flex-column text-left tour-feature">
 									<i className="fas fa-clock mb-3"></i>
 									<p className="thin-text mb-0">Duration</p>
-									<p>{roundToTwo(experience.duration / 60)} hours</p>
+									<p>{roundToTwo(experience.exp.duration / 60)} hours</p>
 								</div>
 								<div className="dflex flex-column text-left tour-feature">
 									<i className="fas fa-users mb-3"></i>
 									<p className="thin-text mb-0">Group size</p>
-									<p>Up to {experience.groupSize} people</p>
+									<p>Up to {experience.exp.groupSize} people</p>
 								</div>
 								<div className="dflex flex-column text-left tour-feature">
 									<i className="fas fa-comments mb-3"></i>
 									<p className="thin-text mb-0">Hosted in</p>
-									<p>{experience.language}</p>
+									<p>{experience.exp.language}</p>
 								</div>
 							</div>
 						</div>
@@ -117,18 +119,21 @@ export default function ExperiencePage(props) {
 				<div className="container p-5">
 					<div className="row">
 						<div className="col-md-4">
-							<h2>What to bring</h2>
+							<h2>Your host</h2>
 						</div>
 						<div className="col-md-8">
-							<div className="description">
-								{description.items
-									? description.items.map((item) => <span className="badge badge-warning">{item}</span>)
-									: "Just yourself! This experience only requires a willingness to participate."}
+							<div className="description text-center">
+								<img className="avatar" src={experience.ownerInfo.avatar} />
+								<div className="d-flex flex-column">
+									<h5 className="name mt-2">{experience.ownerInfo.name}</h5>
+									<p className="intro mt-2">{experience.ownerInfo.introduction}</p>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			<hr />
 			<div className="p-2 text-left">
 				<div className="container p-5">
 					<div className="row">
@@ -137,8 +142,8 @@ export default function ExperiencePage(props) {
 						</div>
 						<div className="col-md-8">
 							<div className="description">
-								{description.items
-									? description.items.map((item) => <span className="badge badge-warning">{item}</span>)
+								{experience.exp.items
+									? experience.exp.items.map((item) => <span className="badge badge-warning">{item}</span>)
 									: "Just yourself! This experience only requires a willingness to participate."}
 							</div>
 						</div>
